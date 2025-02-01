@@ -1,0 +1,18 @@
+services:
+  cue-editor:
+    # Use the local cue-editor image
+    image: cue-editor
+    container_name: cue_editor_container
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      # Mount the current directory to /app inside the container
+      - .:/app
+    working_dir: /app
+    # command: ./cue_editor
+    # Alternative command for debugging (commented out)
+    stdin_open: true  # Keeps STDIN open
+    tty: true         # Enables TTY (terminal)
+    # command: sh -c "cargo build --release --target=x86_64-pc-windows-gnu && /bin/bash"
+    command: sh -c "cargo build --release --target=x86_64-pc-windows-gnu"
